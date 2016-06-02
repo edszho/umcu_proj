@@ -1,0 +1,46 @@
+<!-- Uses Django forms. Slightly easier-->
+{% load staticfiles %}
+<html>
+<head>
+	<link rel="stylesheet" href="{% static 'css/member.css' %}">
+</head>
+<body>
+	<div class="titlebar">
+		<div>
+			<img src="{% static "images/UMCU2.png" %}" style="float: left">
+			<img src="{% static "images/application.png" %}" style="float: right; height: 45px">
+		</div>
+	</div>
+	<form method="post" align="center">
+		{% csrf_token %}
+		<fieldset>
+			<legend>Account Information</legend>
+			<table align="center">
+				<tr>
+					<th>
+						<label>Type of Membership: </label>
+						<td>
+							<label>Individual</label>
+							<input id="individual" name="membership_type" type="radio">
+						</td>
+						<td>
+							<label>Joint</label>
+							<input id="joint" name="membership_type" type="radio">
+						</td>
+					</th>
+				</tr>
+				{{ acc_form.as_table }}
+			</table>
+		</fieldset>
+		<fieldset>
+			<legend>Primary Account Holder Information</legend>
+			<table align="center">
+				{{ user_form.as_table }}
+			</table>
+		</fieldset>
+		<input type="submit" value="Submit" align="center">
+	</form>
+
+</body>
+
+</html>

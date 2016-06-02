@@ -1,0 +1,26 @@
+body{
+    max-width: 1080px;
+    margin: 0 auto;
+    float: none !important;
+    background-repeat: no-repeat;
+    background-image: url(/static/images/umcu_background.jpg);
+    background-position: center top;
+}
+
+.header{
+	width: 60%;
+	margin: 0 auto;
+}
+
+.link{
+	color: black;
+	font-size: x-large;
+	width: 200px;
+	height: 100px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}

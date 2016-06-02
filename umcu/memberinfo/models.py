@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from localflavor.us.models import USStateField
 
-# Create your models here.
-
+#TODO: Think about adding "Joint" boolean. Is there a point?
 class Account(models.Model):
 	username = models.CharField(max_length=20, unique=True)
 	password = models.CharField(max_length=250)
@@ -18,8 +18,9 @@ class User(models.Model):
 	ssn = models.CharField(max_length=9, unique=True)
 	dob = models.DateTimeField()
 	license = models.CharField(max_length=15)
-	license_state = models.CharField(max_length=2)
+	license_state = USStateField()
 	occupation = models.CharField(max_length=30)
+	email = models.EmailField(max_length=40, default="None")
 	MEMBERSHIP_CHOICES = (
 			('1', 'UM Student'), 
 			('2', 'UM Grad Student'),
@@ -32,13 +33,13 @@ class User(models.Model):
 			('9', 'Current Member'),
 			('10', 'Other'),
 		)
-	membership = models.CharField(max_length=2, choices=MEMBERSHIP_CHOICES)
+	membership = models.CharField(max_length=2, choices=MEMBERSHIP_CHOICES, default='1')
 	GENDER_CHOICES = (
 			('M', 'Male'),
 			('F', 'Female'),
 			('O', 'Other'),
 	)
-	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
 
 	is_primary = models.BooleanField(default=True)
 	def __str__(self):
