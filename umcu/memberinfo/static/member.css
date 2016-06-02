@@ -1,0 +1,15 @@
+.sectionheader {
+    background-image: url(/static/images/Bar.png);
+    height: 30px;
+    padding-left: 10px;
+    vertical-align: middle;
+    font-weight: bold;
+    font-size: 14pt;
+    color: #003366;
+}
+
+.titlebar {
+    background-image: url(/static/images/headerbar.png);
+    height: 100px;
+    vertical-align: middle;
+}

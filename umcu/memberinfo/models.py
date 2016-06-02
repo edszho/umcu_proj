@@ -15,16 +15,31 @@ class User(models.Model):
 	firstname = models.CharField(max_length=20)
 	lastname = models.CharField(max_length=20)
 	middlename = models.CharField(max_length=20)
-	ssn = models.CharField(max_length=9)
+	ssn = models.CharField(max_length=9, unique=True)
 	dob = models.DateTimeField()
-	license = models.CharField(max_length=15, null=False)
-	license_state = models.CharField(max_length=12, null=False)
+	license = models.CharField(max_length=15)
+	license_state = models.CharField(max_length=2)
 	occupation = models.CharField(max_length=30)
-	membership = models.CharField(max_length=25)
-	gender = (
-			('MALE', 'Male'),
-			('FEMALE', 'Female'),
-			('OTHER', 'Other'),
+	MEMBERSHIP_CHOICES = (
+			('1', 'UM Student'), 
+			('2', 'UM Grad Student'),
+			('3', 'UM Hospital'),
+			('4', 'UM Faculty/Staff'),
+			('5', 'Alumni'),
+			('6', 'Retiree'),
+			('7', 'WCC'),
+			('8', 'Family Member'),
+			('9', 'Current Member'),
+			('10', 'Other'),
+		)
+	membership = models.CharField(max_length=2, choices=MEMBERSHIP_CHOICES)
+	GENDER_CHOICES = (
+			('M', 'Male'),
+			('F', 'Female'),
+			('O', 'Other'),
 	)
+	gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+
+	is_primary = models.BooleanField(default=True)
 	def __str__(self):
 		return '%s %s %s' % (self.firstname, self.lastname, self.license)
